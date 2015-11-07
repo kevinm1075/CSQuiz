@@ -1,6 +1,8 @@
 package com.example.kevin.csquiz;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -58,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
         quizProgress = (ProgressBar)findViewById(R.id.quizProgress);
+
+        quizProgress.getProgressDrawable().setColorFilter(Color.WHITE, PorterDuff.Mode.MULTIPLY);
         totalQuestions = menu.getIntExtra("numQuestions", 0);
         quizProgress.setMax(totalQuestions);
 

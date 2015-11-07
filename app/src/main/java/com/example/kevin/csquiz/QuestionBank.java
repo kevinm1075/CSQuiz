@@ -16,7 +16,7 @@ public class QuestionBank
 {
     private static final ArrayList<Question> bank = new ArrayList<Question>();
     private static final int DELIMIT_FORMAT = 6;
-    public static final int NUM_SORT_Q = 10;
+    public static final int NUM_SORT_Q = 9;
     public static final String SORT_FILE = "sorting.txt";
 
     public QuestionBank()
