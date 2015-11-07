@@ -1,7 +1,13 @@
 # CSQuiz
-Android quiz game for testing knowledge of computer science concepts.
+A simple quiz game for andriod which tests the players knowledge of computer science concepts such as sorting and data structures.
 
 ### Current Progress:
-Game loop has been completed.
+**Screenshots:** (User interface is progress)   
+![alt tag](http://i.imgur.com/cXKxu1V.png)
 
-Currently working on user interface and adding questions.
+![alt tag](http://i.imgur.com/I7UewXp.png)
+
+### To Do:
+- Improve user interface
+- Add more questions
+- Add to Google Play Store
