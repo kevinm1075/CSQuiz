@@ -1,9 +1,0 @@
-What is the worst case time complexity of Quick Sort?           |O(n)|O(n^2)|O(log n)|O(n log n)    |1
-What is the worst case time complexity of Merge Sort?           |O(n)|O(n^2)|O(log n)|O(n log n)    |3
-What is the worst case time complexity of Tim Sort?             |O(n)|O(n^2)|O(log n)|O(n log n)    |3
-What is the worst case time complexity of Heap Sort?            |O(n)|O(n^2)|O(log n)|O(n log n)    |3
-What is the worst case time complexity of Bubble Sort?          |O(n)|O(n^2)|O(log n)|O(n log n)    |1
-What is the worst case time complexity of Insertion Sort?       |O(n)|O(n^2)|O(log n)|O(n log n)    |1
-What is the worst case time complexity of Selection Sort?       |O(n)|O(n^2)|O(log n)|O(n log n)    |1
-What is the worst case time complexity of Bucket Sort?          |O(n)|O(n^2)|O(log n)|O(n log n)    |1
-What is the worst case time complexity of Radix Sort?           |O(nk)|O(nk^2)|O(log nk)|O(nk log nk)    |1
