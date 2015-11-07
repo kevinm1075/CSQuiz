@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">CSQuiz</string>
+    <string name="question">QUESTION_VAL</string>
+    <string name="score">Score:</string>
+    <string name="scoreNum">000</string>
+    <string name="answer">ANSWER_VAL</string>
+    <string name="title_activity_menu">MenuActivity</string>
+</resources>
