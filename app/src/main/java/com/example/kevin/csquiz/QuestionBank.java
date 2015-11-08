@@ -14,33 +14,34 @@ import java.util.Scanner;
 
 public class QuestionBank
 {
-    private static final ArrayList<Question> bank = new ArrayList<Question>();
+    private static ArrayList<Question> bank;
+
     private static final int DELIMIT_FORMAT = 6;
-    public static final int NUM_SORT_Q = 9;
+
+    public static final int NUM_SORT_QUESTIONS = 9;
     public static final String SORT_FILE = "sorting.txt";
 
+    public static final int NUM_DATA_STRUCT_QUESTIONS = 0;
+    public static final String DATA_STRUCT_FILE = "data_struct.txt";
+
+    /**
+     * QuestionBank Constructor
+     */
     public QuestionBank()
     {
+        bank = new ArrayList<Question>();
     }
 
-    public void addQuestions(Question q)
-    {
-        bank.add(q);
-    }
-
-    public void addQuestions(Question[] questions)
-    {
-        for(int i = 0; i < questions.length; i++)
-        {
-            bank.add(questions[i]);
-        }
-    }
-
-    public void addQuestions(String database, Context instance)
+    /**
+     * addQuestions - Given file name, add questions to the bank.
+     * @param fileName - file location
+     * @param instance - context instance
+     */
+    public void addQuestions(String fileName, Context instance)
     {
         try
         {
-            InputStream stream = instance.getAssets().open(database);
+            InputStream stream = instance.getAssets().open(fileName);
             Scanner scan = new Scanner(stream);
 
             String line = "";
@@ -73,10 +74,31 @@ public class QuestionBank
         }
     }
 
+    /**
+     * addSorting - Adds sorting questions to the bank
+     * @param instance - context instance
+     */
+    public void addSorting(Context instance)
+    {
+        addQuestions(SORT_FILE, instance);
+    }
+
+    /**
+     * addDataStructures - Add data structure questions to the bank
+     * @param instance - context instance
+     */
+    public void addDataStructures(Context instance)
+    {
+        addQuestions(DATA_STRUCT_FILE, instance);
+    }
+
+    /**
+     * getQuestion - get Question object at position x
+     * @param x - position
+     * @return Question object
+     */
     public Question getQuestion(int x)
     {
         return bank.get(x);
     }
-
-    public int getSize() { return bank.size(); }
 }

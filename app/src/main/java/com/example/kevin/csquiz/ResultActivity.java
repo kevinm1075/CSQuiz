@@ -23,8 +23,9 @@ public class ResultActivity extends AppCompatActivity {
 
         int score = results.getIntExtra("score", 0);
         int totalQuestions = results.getIntExtra("totalQuestions", 0);
-        scoreVal.setText(Integer.toString(score) + " / " + Integer.toString(totalQuestions));
+        scoreVal.setText(Integer.toString(score) + " / " + Integer.toString(totalQuestions)); // Set final score
 
+        // Start new game
         newQuiz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

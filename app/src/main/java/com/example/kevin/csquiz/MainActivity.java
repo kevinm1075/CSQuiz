@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private int totalQuestions;
     private int score;
 
-    TextView questionText, scoreNum;
+    TextView questionText, scoreText;
     Button ansBtn0, ansBtn1, ansBtn2, ansBtn3;
     ProgressBar quizProgress;
 
@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         Intent menu = getIntent();
 
         questionText = (TextView)findViewById(R.id.questionText);
-        scoreNum = (TextView)findViewById(R.id.scoreNum);
+        scoreText = (TextView)findViewById(R.id.scoreText);
         ansBtn0 = (Button)findViewById(R.id.ans0Btn);
         ansBtn1 = (Button)findViewById(R.id.ans1Btn);
         ansBtn2 = (Button)findViewById(R.id.ans2Btn);
@@ -78,13 +78,13 @@ public class MainActivity extends AppCompatActivity {
     private void addQuestions(boolean includeAlgs, boolean includeDataStructs)
     {
         if(includeAlgs)
-            bank.addQuestions(QuestionBank.SORT_FILE, this);
+            bank.addSorting(this);
     }
 
     private void nextQuestion()
     {
         quizProgress.setProgress(questionCount);
-        scoreNum.setText(Integer.toString(score));
+        scoreText.setText("Score:" + Integer.toString(score));
 
         if(questionCount < totalQuestions)
         {
@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
 
             questionText.setText(currentQuestion.getQuestion());
 
-            String[] potentialAnswers = currentQuestion.getPotAnswers();
+            String[] potentialAnswers = currentQuestion.getPotentialAnswers();
             ansBtn0.setText(potentialAnswers[0]);
             ansBtn1.setText(potentialAnswers[1]);
             ansBtn2.setText(potentialAnswers[2]);

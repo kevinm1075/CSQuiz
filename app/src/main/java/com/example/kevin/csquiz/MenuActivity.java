@@ -16,7 +16,7 @@ import android.widget.TextView;
 public class MenuActivity extends AppCompatActivity {
 
     Switch algorithms, dataStructures;
-    SeekBar numQuestions;
+    SeekBar numQuestionsSlider;
     TextView curQuestions;
     Button startButton;
     int maxQuestions;
@@ -30,20 +30,20 @@ public class MenuActivity extends AppCompatActivity {
 
         algorithms = (Switch)findViewById(R.id.algSwitch);
         dataStructures = (Switch)findViewById(R.id.dataStructSwitch);
-        numQuestions = (SeekBar)findViewById(R.id.seekBar);
+        numQuestionsSlider = (SeekBar)findViewById(R.id.seekBar);
         curQuestions = (TextView)findViewById(R.id.numQuestionsText);
         startButton = (Button)findViewById(R.id.startBtn);
 
         algorithms.setChecked(true);
-        final int numAlgQ = QuestionBank.NUM_SORT_Q;
+        final int numAlgQ = QuestionBank.NUM_SORT_QUESTIONS;
 
         dataStructures.setChecked(true);
         final int numDSQ = 0;
 
         maxQuestions = numAlgQ + numDSQ;
 
-        numQuestions.setMax(maxQuestions);
-        numQuestions.setProgress(maxQuestions);
+        numQuestionsSlider.setMax(maxQuestions);
+        numQuestionsSlider.setProgress(maxQuestions);
         curQuestions.setText(Integer.toString(maxQuestions));
 
         algorithms.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -60,7 +60,7 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
-        numQuestions.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        numQuestionsSlider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 curQuestions.setText(Integer.toString(progress));
@@ -81,7 +81,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent start = new Intent(v.getContext(), MainActivity.class);
-                start.putExtra("numQuestions", numQuestions.getProgress());
+                start.putExtra("numQuestions", numQuestionsSlider.getProgress());
                 start.putExtra("algorithms", algorithms.isChecked());
                 start.putExtra("data structures", dataStructures.isChecked());
                 finish();
@@ -91,6 +91,11 @@ public class MenuActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * adjustQuestionsBar - Changes the available questions of the slider
+     * @param num - amount to adjust slider
+     * @param checked - include or remove question amount
+     */
     private void adjustQuestionsBar(int num, boolean checked)
     {
         if(checked)
@@ -102,7 +107,6 @@ public class MenuActivity extends AppCompatActivity {
             maxQuestions -= num;
         }
 
-        numQuestions.setMax(maxQuestions);
+        numQuestionsSlider.setMax(maxQuestions);
     }
-
 }

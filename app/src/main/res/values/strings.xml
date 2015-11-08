@@ -5,4 +5,5 @@
     <string name="scoreNum"></string>
     <string name="answer">ANSWER_VAL</string>
     <string name="title_activity_menu">MenuActivity</string>
+    <string name="title">CSQuiz</string>
 </resources>
