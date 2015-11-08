@@ -9,5 +9,6 @@ A simple quiz game for andriod which tests the players knowledge of computer sci
 
 ### To Do:
 - Improve user interface
+- Improive activity lifecycle
 - Add more questions
 - Add to Google Play Store
