@@ -13,7 +13,7 @@
         </activity>
         <activity
             android:name=".MenuActivity"
-            android:label="@string/title_activity_menu"
+            android:label="@string/title"
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait">
             <intent-filter>
