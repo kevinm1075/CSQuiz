@@ -3,9 +3,9 @@ A simple quiz game for andriod which tests the players knowledge of computer sci
 
 ### Current Progress:
 **Screenshots:** (User interface is progress)   
-![alt tag](http://i.imgur.com/cXKxu1V.png)
+![alt tag](http://i.imgur.com/ufZ757K.png)
 
-![alt tag](http://i.imgur.com/I7UewXp.png)
+![alt tag](http://i.imgur.com/5vaUGV1.png)
 
 ### To Do:
 - Improve user interface
