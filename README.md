@@ -1,8 +1,7 @@
 # CSQuiz
 A simple quiz game for andriod which tests the players knowledge of computer science concepts such as sorting and data structures.
 
-### Current Progress:
-**Screenshots:**   
+###Screenshots:   
 ![alt tag](http://i.imgur.com/X4xnaul.png)![alt tag](http://i.imgur.com/dLOUL7R.png)
 
 ### To Do:
