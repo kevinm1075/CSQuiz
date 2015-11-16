@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
-    android:background="#333332"
+    android:background="@drawable/bg_drawable"
     android:orientation="vertical"
     android:weightSum="1">
 
@@ -34,6 +35,7 @@
             android:layout_below="@+id/scoreText"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
+
     </RelativeLayout>
 
     <RelativeLayout
@@ -58,55 +60,70 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="196dp"
-        android:layout_weight="0.38"
-        >
+        android:layout_height="215dp">
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/answer"
-            android:id="@+id/ans0Btn"
-            android:minWidth="350dp"
-            android:background="#f0f1ee"
+        <RadioGroup
+            android:id="@+id/radioAnswers"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_alignParentTop="true"
-            android:layout_alignLeft="@+id/ans1Btn"
-            android:layout_alignStart="@+id/ans1Btn" />
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="29dp">
+
+            <RadioButton
+                android:id="@+id/radioButton1"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:background="@drawable/radiobutton_drawable"
+                android:button="@android:color/transparent"
+                android:text="RadioButton1"
+                android:layout_marginBottom="10dp"/>
+
+            <RadioButton
+                android:layout_height="wrap_content"
+                android:text="New RadioButton"
+                android:id="@+id/radioButton2"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:background="@drawable/radiobutton_drawable"
+                android:button="@android:color/transparent"
+                android:layout_marginBottom="10dp" />
+
+            <RadioButton
+                android:layout_height="wrap_content"
+                android:text="New RadioButton"
+                android:id="@+id/radioButton3"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:background="@drawable/radiobutton_drawable"
+                android:button="@android:color/transparent"
+                android:layout_marginBottom="10dp" />
+
+            <RadioButton
+                android:layout_height="wrap_content"
+                android:text="New RadioButton"
+                android:id="@+id/radioButton4"
+                android:gravity="center"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/radiobutton_drawable"
+                android:button="@android:color/transparent"
+                />
+        </RadioGroup>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="79dp">
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/answer"
-            android:id="@+id/ans2Btn"
-            android:layout_below="@+id/ans1Btn"
-            android:layout_centerHorizontal="true"
-            android:minWidth="350dp"
-            android:background="#f0f1ee"
-            android:layout_marginTop="10dp" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/answer"
-            android:id="@+id/ans1Btn"
-            android:minWidth="350dp"
-            android:background="#f0f1ee"
-            android:layout_below="@+id/ans0Btn"
-            android:layout_alignLeft="@+id/ans2Btn"
-            android:layout_alignStart="@+id/ans2Btn"
-            android:layout_marginTop="10dp"
-            android:layout_gravity="center_vertical" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/answer"
-            android:id="@+id/ans3Btn"
-            android:minWidth="350dp"
-            android:layout_below="@+id/ans2Btn"
-            android:layout_centerHorizontal="true"
-            android:background="#f0f1ee"
-            android:layout_marginTop="10dp" />
+            android:text="answer"
+            android:id="@+id/nxtBtn"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
     </RelativeLayout>
 
 </LinearLayout>

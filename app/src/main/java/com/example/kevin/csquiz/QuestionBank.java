@@ -16,20 +16,19 @@ public class QuestionBank
 {
     private static ArrayList<Question> bank;
 
-    private static final int DELIMIT_FORMAT = 6;
-
     public static final int NUM_SORT_QUESTIONS = 9;
-    public static final String SORT_FILE = "sorting.txt";
+    public final String SORT_FILE = "sorting.txt";
 
     public static final int NUM_DATA_STRUCT_QUESTIONS = 0;
-    public static final String DATA_STRUCT_FILE = "data_struct.txt";
+    public final String DATA_STRUCT_FILE = "data_struct.txt";
 
     /**
      * QuestionBank Constructor
      */
-    public QuestionBank()
+    public QuestionBank(String category, Context instance)
     {
         bank = new ArrayList<Question>();
+        addCategory(category, instance);
     }
 
     /**
@@ -37,7 +36,7 @@ public class QuestionBank
      * @param fileName - file location
      * @param instance - context instance
      */
-    public void addQuestions(String fileName, Context instance)
+    private void addQuestions(String fileName, Context instance)
     {
         try
         {
@@ -47,6 +46,7 @@ public class QuestionBank
             String line = "";
             String[] delimit;
             Question currentQ;
+            final int DELIMIT_FORMAT = 6;
 
             while(scan.hasNextLine()) {
                 line = scan.nextLine();
@@ -75,21 +75,19 @@ public class QuestionBank
     }
 
     /**
-     * addSorting - Adds sorting questions to the bank
-     * @param instance - context instance
+     * addCategory
+     * @param category
+     * @param instance
      */
-    public void addSorting(Context instance)
+    public void addCategory(String category, Context instance)
     {
-        addQuestions(SORT_FILE, instance);
-    }
-
-    /**
-     * addDataStructures - Add data structure questions to the bank
-     * @param instance - context instance
-     */
-    public void addDataStructures(Context instance)
-    {
-        addQuestions(DATA_STRUCT_FILE, instance);
+        switch(category) {
+            case "sorting": {this.addQuestions(SORT_FILE, instance);
+                            break;}
+            case "linkedLists": {this.addQuestions(DATA_STRUCT_FILE, instance);
+                                break;}
+            default: {break;}
+        }
     }
 
     /**
@@ -100,5 +98,10 @@ public class QuestionBank
     public Question getQuestion(int x)
     {
         return bank.get(x);
+    }
+
+    public int getSize()
+    {
+        return bank.size();
     }
 }

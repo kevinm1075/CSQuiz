@@ -6,8 +6,11 @@ import android.graphics.PorterDuff;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -15,12 +18,12 @@ public class MainActivity extends AppCompatActivity {
     private QuestionBank bank;
     private Question currentQuestion;
     private int questionCount;
-    private int totalQuestions;
     private int score;
 
     TextView questionText, scoreText;
-    Button ansBtn0, ansBtn1, ansBtn2, ansBtn3;
-    ProgressBar quizProgress;
+    RadioGroup radioGroup;
+    RadioButton radioButton;
+    Button nextBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,95 +31,119 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Intent menu = getIntent();
-
-        questionText = (TextView)findViewById(R.id.questionText);
-        scoreText = (TextView)findViewById(R.id.scoreText);
-        ansBtn0 = (Button)findViewById(R.id.ans0Btn);
-        ansBtn1 = (Button)findViewById(R.id.ans1Btn);
-        ansBtn2 = (Button)findViewById(R.id.ans2Btn);
-        ansBtn3 = (Button)findViewById(R.id.ans3Btn);
-
-        ansBtn0.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View v)
-            {
-                checkAnswer(ansBtn0.getText().toString());
-            }
-        });
-        ansBtn1.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                checkAnswer(ansBtn1.getText().toString());
-            }
-        });
-        ansBtn2.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                checkAnswer(ansBtn2.getText().toString());
-            }
-        });
-        ansBtn3.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                checkAnswer(ansBtn3.getText().toString());
-            }
-        });
-
-        quizProgress = (ProgressBar)findViewById(R.id.quizProgress);
-
-        quizProgress.getProgressDrawable().setColorFilter(Color.WHITE, PorterDuff.Mode.MULTIPLY);
-        totalQuestions = menu.getIntExtra("numQuestions", 0);
-        quizProgress.setMax(totalQuestions);
-
-        boolean includeAlgs = menu.getBooleanExtra("algorithms", false);
-        boolean includeDataStructs = menu.getBooleanExtra("data structures", false);
-        bank = new QuestionBank();
-        addQuestions(includeAlgs, includeDataStructs);
-
+        String category = menu.getStringExtra("category");
+        bank = new QuestionBank(category, this);
         questionCount = 0;
         score = 0;
-        nextQuestion();
-    }
 
-    private void addQuestions(boolean includeAlgs, boolean includeDataStructs)
-    {
-        if(includeAlgs)
-            bank.addSorting(this);
+        radioGroup = (RadioGroup)findViewById(R.id.radioAnswers);
+        questionText = (TextView)findViewById(R.id.questionText);
+        scoreText = (TextView)findViewById(R.id.scoreText);
+        nextBtn = (Button)findViewById((R.id.nxtBtn));
+
+        setNextBtn();
+        nextQuestion();
     }
 
     private void nextQuestion()
     {
-        quizProgress.setProgress(questionCount);
-        scoreText.setText("Score:" + Integer.toString(score));
+        nextBtn.setText("answer");
+        setNextBtn();
+        radioGroup.setEnabled(true);
 
-        if(questionCount < totalQuestions)
+        if(questionCount < bank.getSize())
         {
             currentQuestion = bank.getQuestion(questionCount);
-
             questionText.setText(currentQuestion.getQuestion());
 
             String[] potentialAnswers = currentQuestion.getPotentialAnswers();
-            ansBtn0.setText(potentialAnswers[0]);
-            ansBtn1.setText(potentialAnswers[1]);
-            ansBtn2.setText(potentialAnswers[2]);
-            ansBtn3.setText(potentialAnswers[3]);
+            RadioButton answerBtn;
+
+            for(int i = 0; i < radioGroup.getChildCount(); i++)
+            {
+                answerBtn = (RadioButton)radioGroup.getChildAt(i);
+                answerBtn.setText(potentialAnswers[i]);
+                answerBtn.setBackgroundResource(R.drawable.radiobutton_drawable);
+            }
 
             questionCount++;
         }
         else
         {
-            Intent endQuiz = new Intent(this, ResultActivity.class);
-            endQuiz.putExtra("score", score);
-            endQuiz.putExtra("totalQuestions", totalQuestions);
-            finish();
-            startActivity(endQuiz);
+            endQuiz();
         }
     }
 
-    private void checkAnswer(String ans)
+    /**
+     * Checks the answer
+     */
+    private void checkAnswer()
     {
-        if(currentQuestion.isCorrect(ans))
+        RadioButton answerBtn = null;
+        int i = 0;
+
+        // Since answers are always shuffled, find the correct answer button
+        while(answerBtn == null && i < radioGroup.getChildCount())
         {
-            score++;
+            RadioButton temp = (RadioButton)radioGroup.getChildAt(i);
+            String answer = temp.getText().toString();
+
+            if(currentQuestion.isCorrect(answer))
+            {
+                answerBtn = temp;
+            }
+
+            i++;
         }
 
-        nextQuestion();
+        // Get users answer
+        int checked = radioGroup.getCheckedRadioButtonId();
+        RadioButton checkedBtn = (RadioButton)findViewById(checked);
+
+        if(answerBtn == checkedBtn)
+        {
+            score++; // Add to score
+            scoreText.setText("Score:" + Integer.toString(score));
+        }
+        else
+        {
+            checkedBtn.setBackgroundResource(R.drawable.incorrectradio_drawable); // Set incorrect button red
+        }
+
+        answerBtn.setBackgroundResource(R.drawable.correctradio_drawable); // Set correct button green
+        radioGroup.setEnabled(false);
+        nextBtn.setText("next");
+        setNextBtn();
+    }
+
+    private void setNextBtn()
+    {
+        if(nextBtn.getText().toString() == "next")
+        {
+            nextBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    nextQuestion();
+                }
+            });
+        }
+        else
+        {
+            nextBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    checkAnswer();
+                }
+            });
+        }
+    }
+
+    private void endQuiz()
+    {
+        Intent endQuiz = new Intent(this, ResultActivity.class);
+        endQuiz.putExtra("score", score);
+        endQuiz.putExtra("totalQuestions", bank.getSize());
+        finish();
+        startActivity(endQuiz);
     }
 }
