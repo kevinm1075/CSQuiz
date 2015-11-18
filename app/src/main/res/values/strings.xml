@@ -1,9 +1,22 @@
 <resources>
     <string name="app_name">CSQuiz</string>
-    <string name="question">QUESTION_VAL</string>
-    <string name="score">Score:</string>
-    <string name="scoreNum"></string>
-    <string name="answer">ANSWER_VAL</string>
+
+    <string name="categories">[ CATEGORIES ]</string>
+    <string name="sorting">sorting</string>
+    <string name="linkedLists">linked lists</string>
+    <string name="arrays">arrays</string>
+    <string name="trees">trees</string>
+    <string name="hashes">hashes</string>
+    <string name="stack">stack</string>
+
     <string name="title_activity_menu">MenuActivity</string>
     <string name="title">CSQuiz</string>
+    <string name="question">QUESTION_VAL</string>
+    <string name="answer">ANSWER_VAL</string>
+    <string name="score">SCORE_VAL</string>
+    <string name="questionNum">QUESTION_NUM_VAL</string>
+    <string name="answerButton">answer</string>
+
+    <string name="scoreEnd">SCORE:</string>
+    <string name="newQuiz">new quiz</string>
 </resources>
