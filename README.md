@@ -3,9 +3,3 @@ A simple quiz game for andriod which tests the players knowledge of computer sci
 
 ###Screenshots:   
 ![alt tag](http://i.imgur.com/fy8jX2A.png)![alt tag](http://i.imgur.com/JzSHQiq.png)
-
-### To Do:
-- Improve user interface
-- Improive activity lifecycle
-- Add more questions
-- Add to Google Play Store
