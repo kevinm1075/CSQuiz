@@ -1,0 +1,8 @@
+What is the worst case time complexity of searching a linked list?            |O(n)|O(n^2)|O(log n)|O(1)    |O(n)
+What is the worst case time complexity of inserting to a linked list?          |O(n)|O(n^2)|O(log n)|O(1)    |O(1)
+What is the worst case time complexity of deletion in a linked list?           |O(n)|O(n^2)|O(log n)|O(1)    |O(1)
+What is the worst case time complexity of accessing a linked list?            |O(n)|O(n^2)|O(log n)|O(1)    |O(n)
+What is the worst case time complexity of searching a doubly-linked list?            |O(n)|O(n^2)|O(log n)|O(1)    |O(n)
+What is the worst case time complexity of inserting to a doubly-linked list?          |O(n)|O(n^2)|O(log n)|O(1)    |O(1)
+What is the worst case time complexity of deletion in a doubly-linked list?           |O(n)|O(n^2)|O(log n)|O(1)    |O(1)
+What is the worst case time complexity of accessing a doubly-linked list?            |O(n)|O(n^2)|O(log n)|O(1)    |O(n)

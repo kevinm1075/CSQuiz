@@ -1,0 +1,8 @@
+What is the worst case time complexity of searching a binary search tree?            |O(n)|O(n^2)|O(log n)|O(1)    |O(n)
+What is the worst case time complexity of inserting to a binary search tree?          |O(n)|O(n^2)|O(log n)|O(1)    |O(n)
+What is the worst case time complexity of deletion in a binary search tree?           |O(n)|O(n^2)|O(log n)|O(1)    |O(n)
+What is the worst case time complexity of accessing a binary search tree?           |O(n)|O(n^2)|O(log n)|O(1)    |O(n)
+What is the average case time complexity of searching a binary search tree?            |O(n)|O(n^2)|O(log n)|O(1)    |O(log n)
+What is the average case time complexity of inserting to a binary search tree?          |O(n)|O(n^2)|O(log n)|O(1)    |O(log n)
+What is the average case time complexity of deletion in a binary search tree?           |O(n)|O(n^2)|O(log n)|O(1)    |O(log n)
+What is the average case time complexity of accessing a binary search tree?           |O(n)|O(n^2)|O(log n)|O(1)    |O(log n)

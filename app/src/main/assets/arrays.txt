@@ -1,0 +1,4 @@
+What is the worst case time complexity of searching an array?            |O(n)|O(n^2)|O(log n)|O(1)    |O(n)
+What is the worst case time complexity of inserting to an array?          |O(n)|O(n^2)|O(log n)|O(1)    |O(n)
+What is the worst case time complexity of deletion in an array?           |O(n)|O(n^2)|O(log n)|O(1)    |O(n)
+What is the worst case time complexity of accessing an array?            |O(n)|O(n^2)|O(log n)|O(1)     |O(1)
