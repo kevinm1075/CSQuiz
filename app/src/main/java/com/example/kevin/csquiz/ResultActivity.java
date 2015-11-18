@@ -8,30 +8,27 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class ResultActivity extends AppCompatActivity {
-
-    Button newQuiz;
-    TextView scoreVal;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
 
-        Intent results = getIntent();
-        newQuiz = (Button)findViewById(R.id.newQuiz);
-        scoreVal = (TextView)findViewById(R.id.scoreVal);
+        Button newQuiz = (Button)findViewById(R.id.newQuiz);
+        TextView scoreVal = (TextView)findViewById(R.id.scoreVal);
 
+        // Get final score and set
+        Intent results = getIntent();
         int score = results.getIntExtra("score", 0);
         int totalQuestions = results.getIntExtra("totalQuestions", 0);
-        scoreVal.setText(Integer.toString(score) + " / " + Integer.toString(totalQuestions)); // Set final score
+        scoreVal.setText(Integer.toString(score) + " / " + Integer.toString(totalQuestions));
 
         // Start new game
-        newQuiz.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+                newQuiz.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
                 Intent newQuiz = new Intent(v.getContext(), MenuActivity.class);
                 finish();
-                startActivity(newQuiz);
+                        startActivity(newQuiz);
             }
         });
     }

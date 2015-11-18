@@ -11,7 +11,7 @@ public class Question
     /**
      * Question Constructor -
      * @param question Question Text
-     * @param potentialAns Array containing potential answers
+     * @param potentialAns Potential answers
      * @param answer Correct answer
      */
     public Question(String question, String[] potentialAns, String answer)

@@ -43,9 +43,10 @@ public class MenuActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View v)
                         {
+                            // Store the chosen category, questions built in following activity
                             Intent start = new Intent(v.getContext(), MainActivity.class);
                             Button b = (Button)v;
-                            start.putExtra("category", b.getText().toString().trim());
+                            start.putExtra("category", b.getText().toString());
 
                             finish();
                             startActivity(start);

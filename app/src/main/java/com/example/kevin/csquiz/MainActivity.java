@@ -20,10 +20,10 @@ public class MainActivity extends AppCompatActivity {
     private int questionCount;
     private int score;
 
-    TextView questionText, scoreText;
-    RadioGroup radioGroup;
-    RadioButton radioButton;
-    Button nextBtn;
+    private TextView questionText, scoreText, questionNum;
+    private RadioGroup radioGroup;
+    private Button nextBtn;
+    private ProgressBar quizProgress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,26 +39,36 @@ public class MainActivity extends AppCompatActivity {
         radioGroup = (RadioGroup)findViewById(R.id.radioAnswers);
         questionText = (TextView)findViewById(R.id.questionText);
         scoreText = (TextView)findViewById(R.id.scoreText);
+        questionNum = (TextView)findViewById(R.id.questionNumText);
         nextBtn = (Button)findViewById((R.id.nxtBtn));
+
+        quizProgress = (ProgressBar)findViewById(R.id.quizProgress);
+        quizProgress.setMax(bank.getSize());
 
         setNextBtn();
         nextQuestion();
     }
 
+    /**
+     * nextQuestion - sets up the next question to be answered
+     */
     private void nextQuestion()
     {
         nextBtn.setText("answer");
         setNextBtn();
         radioGroup.setEnabled(true);
 
-        if(questionCount < bank.getSize())
+        if(questionCount < bank.getSize()) // Check if there are still questions to be answered
         {
+            questionNum.setText("Question: " + (questionCount + 1) + " / " + bank.getSize());
+            scoreText.setText("Score: " + Integer.toString(score));
             currentQuestion = bank.getQuestion(questionCount);
             questionText.setText(currentQuestion.getQuestion());
 
             String[] potentialAnswers = currentQuestion.getPotentialAnswers();
             RadioButton answerBtn;
 
+            // Set the answer buttons with potential answers and reset color
             for(int i = 0; i < radioGroup.getChildCount(); i++)
             {
                 answerBtn = (RadioButton)radioGroup.getChildAt(i);
@@ -75,47 +85,54 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Checks the answer
+     * checkAnswer - checks if the selected answer is correct
      */
     private void checkAnswer()
     {
-        RadioButton answerBtn = null;
-        int i = 0;
-
-        // Since answers are always shuffled, find the correct answer button
-        while(answerBtn == null && i < radioGroup.getChildCount())
+        if(radioGroup.getCheckedRadioButtonId() != -1) // Check that an answer has been chosen
         {
-            RadioButton temp = (RadioButton)radioGroup.getChildAt(i);
-            String answer = temp.getText().toString();
+            RadioButton answerBtn = null;
+            int i = 0;
 
-            if(currentQuestion.isCorrect(answer))
+            // Since answers are always shuffled, find the correct answer button
+            while(answerBtn == null && i < radioGroup.getChildCount())
             {
-                answerBtn = temp;
+                RadioButton temp = (RadioButton)radioGroup.getChildAt(i);
+                String answer = temp.getText().toString();
+
+                if(currentQuestion.isCorrect(answer))
+                {
+                    answerBtn = temp;
+                }
+
+                i++;
             }
 
-            i++;
-        }
+            // Get users answer
+            int checked = radioGroup.getCheckedRadioButtonId();
+            RadioButton checkedBtn = (RadioButton)findViewById(checked);
 
-        // Get users answer
-        int checked = radioGroup.getCheckedRadioButtonId();
-        RadioButton checkedBtn = (RadioButton)findViewById(checked);
+            if(answerBtn == checkedBtn)
+            {
+                score++; // Add to score
+            }
+            else
+            {
+                checkedBtn.setBackgroundResource(R.drawable.incorrectradio_drawable); // Set incorrect button red
+            }
 
-        if(answerBtn == checkedBtn)
-        {
-            score++; // Add to score
-            scoreText.setText("Score:" + Integer.toString(score));
+            answerBtn.setBackgroundResource(R.drawable.correctradio_drawable); // Set correct button green
+            radioGroup.setEnabled(false);
+            nextBtn.setText("next");
+            quizProgress.setProgress(questionCount);
+            setNextBtn();
         }
-        else
-        {
-            checkedBtn.setBackgroundResource(R.drawable.incorrectradio_drawable); // Set incorrect button red
-        }
-
-        answerBtn.setBackgroundResource(R.drawable.correctradio_drawable); // Set correct button green
-        radioGroup.setEnabled(false);
-        nextBtn.setText("next");
-        setNextBtn();
     }
 
+    /**
+     * setNextBtn - Toggles the onclick listener for the next/answer button depending on the current state
+     * of the question/answer cycle.
+     */
     private void setNextBtn()
     {
         if(nextBtn.getText().toString() == "next")
@@ -138,11 +155,16 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * endQuiz - Ends the quiz, starts the result activity
+     */
     private void endQuiz()
     {
+        // Store the score and total questions for result screen
         Intent endQuiz = new Intent(this, ResultActivity.class);
         endQuiz.putExtra("score", score);
         endQuiz.putExtra("totalQuestions", bank.getSize());
+
         finish();
         startActivity(endQuiz);
     }
