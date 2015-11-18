@@ -8,11 +8,11 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
-        <activity android:name=".MainActivity"
+        <activity android:name="xyz.example.kevin.csquiz.MainActivity"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".MenuActivity"
+            android:name="xyz.example.kevin.csquiz.MenuActivity"
             android:label="@string/title"
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait">
@@ -22,7 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ResultActivity"
+        <activity android:name="xyz.example.kevin.csquiz.ResultActivity"
             android:screenOrientation="portrait">
         </activity>
     </application>

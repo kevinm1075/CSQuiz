@@ -1,19 +1,15 @@
-package com.example.kevin.csquiz;
+package xyz.example.kevin.csquiz;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CompoundButton;
-import android.widget.SeekBar;
-import android.widget.Switch;
 import android.widget.TableRow;
-import android.widget.TextView;
+
+import com.example.kevin.csquiz.R;
 
 public class MenuActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package com.example.kevin.csquiz;
+package xyz.example.kevin.csquiz;
 
 import java.util.Random;
 

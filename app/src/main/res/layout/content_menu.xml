@@ -8,7 +8,7 @@
     android:paddingRight="10dp"
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:showIn="@layout/activity_menu" tools:context="com.example.kevin.csquiz.MenuActivity"
+    tools:showIn="@layout/activity_menu" tools:context="xyz.example.kevin.csquiz.MenuActivity"
     android:background="@drawable/bg_drawable"
     android:weightSum="1">
 
